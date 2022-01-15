@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Croronometer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet"> 
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        header{
+            font-size: 30px;
+            font-weight: 800;
+            font-family: 'Montserrat', sans-serif;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            text-decoration: none;
+            width: 100%;
+            line-height: 15vh;
+            text-shadow:2px 5px 5px black;
+            background-color: cadetblue;
+            color: burlywood;
+        }
+        section{
+            height: 85vh;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            background-color: cornsilk;
+        }
+        .tracker{
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            width: 80%;
+            background-color: aliceblue;
+            height: 600px;
+            box-shadow: 0px 5px 6px rgb(114, 41, 7);
+        }
+        
+        #date{
+            color: brown;
+           
+        }
+        #global{
+            color: rgb(252, 83, 5);
+            margin-top: 8px;
+            line-height: 10vh;
+        }
+        #countryIndia{
+            color: blueviolet;
+            line-height: 10vh;
+        }
+        #totalconfirmedindia{
+            line-height: 5vh;
+        }
+        #totaldeathindia{
+            line-height: 5vh;
+        }
+        #totalrecoveredindia{
+            line-height: 5vh;
+        }
+        #newconfirmed{
+            line-height: 5vh;
+        }
+        #totalconfirmed{
+            line-height: 5vh;
+        }
+        #newrecovered{
+            line-height: 5vh;
+        }
+        #newdeath{
+            line-height: 5vh;
+        }
+        #totaldeath{
+            line-height: 5vh;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h2>Coronometer</h2>
+    </header>
+    <section>
+        
+        <div class="tracker">
+                <h1 id="date"></h1>
+                <h1 id="global"></h1>
+                <h2 id="newconfirmed"></h2>
+                <h2 id="totalconfirmed"></h2>
+                <h2 id="newrecovered"></h2>
+                <h2 id="newdeath"></h2>
+                <h2 id="totaldeath"></h2>
+            <h1 id="countryIndia"></h1>
+            <h2 id="totalconfirmedindia"></h2>
+            <h2 id="totalrecoveredindia"></h2>
+            <h2 id="totaldeathindia"></h2>
+            
+        </div>
+    </section>
+    <script>
+        fetch('https://api.covid19api.com/summary')
+        .then((apidata)=>{
+            return apidata.json();
+        })
+        .then((actualdata)=>{
+            const global=actualdata.Global
+            const mydata=actualdata.Countries[76];
+            document.getElementById('date').innerHTML=`Date : ${global.Date}`;
+            document.getElementById('global').innerHTML=`Global`;
+            document.getElementById('newconfirmed').innerHTML=`New Confirmed cases : ${global.NewConfirmed}`;
+            document.getElementById('totalconfirmed').innerHTML=`Total Confirmed cases : ${global.TotalConfirmed}`;
+            document.getElementById('newrecovered').innerHTML=`New Recovered cases : ${global.NewRecovered}`;
+            document.getElementById('totaldeath').innerHTML=`Total Deaths : ${global.TotalDeaths}`;
+            document.getElementById('newdeath').innerHTML=`New Deaths : ${global.NewDeaths}`;
+            document.getElementById('countryIndia').innerHTML=`Country : ${mydata.Country}`;
+            document.getElementById('totalconfirmedindia').innerHTML=`Total Confirmed Cases : ${mydata.TotalConfirmed}`;
+            document.getElementById('totalrecoveredindia').innerHTML=`Total Recovered cases : ${mydata.TotalRecovered}`;
+            document.getElementById('totaldeathindia').innerHTML=`Total Deaths : ${mydata.TotalDeaths}`;
+            
+        })
+    </script>
+</body>
+</html>
