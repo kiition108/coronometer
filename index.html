@@ -36,12 +36,24 @@
         .tracker{
             justify-content: center;
             align-items: center;
-            display: flex;
+            display: none;
             flex-direction: column;
             width: 80%;
             background-color: aliceblue;
             height: 600px;
             box-shadow: 0px 5px 6px rgb(114, 41, 7);
+
+        }
+        .intracker{
+            justify-content: center;
+            align-items: center;
+            display: none;
+            flex-direction: column;
+            width: 80%;
+            background-color: aliceblue;
+            height: 600px;
+            box-shadow: 0px 5px 6px rgb(114, 41, 7);
+
         }
         
         #date{
@@ -52,10 +64,12 @@
             color: rgb(252, 83, 5);
             margin-top: 8px;
             line-height: 10vh;
+            text-decoration: underline;
         }
         #countryIndia{
             color: blueviolet;
             line-height: 10vh;
+            text-decoration: underline;
         }
         #totalconfirmedindia{
             line-height: 5vh;
@@ -81,6 +95,35 @@
         #totaldeath{
             line-height: 5vh;
         }
+        .btn{
+            background-color: #4c66af;
+            border: none;
+            color: white;
+            text-transform: uppercase;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 25px;
+            border-radius: 8px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+        .bttn{
+            background-color: #e23b11;
+            border: none;
+            color: white;
+            text-transform: uppercase;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 25px;
+            border-radius: 8px;
+            margin: 4px 2px;
+            cursor: pointer;
+            margin-left: 70px;
+        }
     </style>
 </head>
 <body>
@@ -88,8 +131,9 @@
         <h2>Coronometer</h2>
     </header>
     <section>
-        
+        <button class="btn">Global</button>
         <div class="tracker">
+            
                 <h1 id="date"></h1>
                 <h1 id="global"></h1>
                 <h2 id="newconfirmed"></h2>
@@ -97,6 +141,9 @@
                 <h2 id="newrecovered"></h2>
                 <h2 id="newdeath"></h2>
                 <h2 id="totaldeath"></h2>
+        </div>
+        <button class="bttn">India</button>
+        <div class="intracker">    
             <h1 id="countryIndia"></h1>
             <h2 id="totalconfirmedindia"></h2>
             <h2 id="totalrecoveredindia"></h2>
@@ -125,6 +172,17 @@
             document.getElementById('totaldeathindia').innerHTML=`Total Deaths : ${mydata.TotalDeaths}`;
             
         })
+        const globaldata=document.querySelector('.tracker');
+        const btn=document.querySelector('.btn');
+        btn.addEventListener('click',function(){
+            globaldata.classList.toggle('tracker')
+        })
+        const indiadata=document.querySelector('.intracker');
+        const bttn=document.querySelector('.bttn');
+        bttn.addEventListener('click',function(){
+            indiadata.classList.toggle('intracker')
+        })
+        
     </script>
 </body>
 </html>
